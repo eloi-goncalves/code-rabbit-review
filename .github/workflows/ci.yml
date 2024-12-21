@@ -16,15 +16,6 @@ jobs:
         with:
           node-version: '18'  # Specify the desired Node.js version for NestJS
 
-      # Install dependencies
-      - run: npm install
-
-      # Run tests
-      - run: npm run test -- --coverage  # Assuming you're using Jest for testing
-
-      # Build the NestJS application (compiles TypeScript)
-      - run: npm run build
-
       # Setup Node.js cache
       - name: Cache dependencies
         uses: actions/cache@v3
@@ -35,10 +26,19 @@ jobs:
 
       # After running tests
       - name: Upload coverage reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: coverage/
+
+      # Install dependencies
+      - run: npm install
+
+      # Run tests
+      # - run: npm run test -- --coverage  # Assuming you're using Jest for testing
+
+      # Build the NestJS application (compiles TypeScript)
+      - run: npm run build
 
       # Setup QEMU (If Docker is required)
       - name: Setup QEMU
