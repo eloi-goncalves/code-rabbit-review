@@ -1,5 +1,3 @@
-import Image from "next/image";
-import styles from "./page.module.css";
 import './globals.css'; // Import Tailwind CSS
 
 export default function Home() {
